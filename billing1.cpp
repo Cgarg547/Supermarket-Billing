@@ -280,6 +280,71 @@ void shopping :: list(){
     cout << "ProNo\t\tName\t\tPrice"\n;
     cout << "\n\n|_____________________________________\n";
     data >> pcode >> pname >> price >> dis;
+    while (!data.eof()){
+        cout << pcode << "\t\t" << pname << "\t\t" << price << "\n";
+        data >> pcode >> pname >> price >> dis;
+    }
+    data.close();
+}
+
+void shopping :: receipt(){
+    fstream data;
+    int arr[100];
+    int arrOfQuantity[100];
+    char choice;
+    int c = 0;
+    float amount = 0;
+    float dis = 0;
+    float total = 0;
+
+    count << "\n\n\t\t\t\t RECEIPT ";
+
+    data.open("database.txt", ios::in);
+    if(!data){
+        cout << "\n\n Empty database";
+    }
+    else {
+        data.close();
+        list();
+
+        cout << "\n________________________________________\n";
+        cout << "\n|                                      |\n";
+        cout << "\n         Please place the order.        \n";
+        cout << "\n|                                      |\n";
+        cout << "\n________________________________________\n";
+        do {
+            cout << "\n\n Enter Product code :";
+            cin >> arr[c];
+            cout << "\n\n Enter the product quantity :";
+            cin >> arrOfQuantity[c];
+
+            for (int i = 0; i < c; i++){
+                if (arr[c]==arr[i]){
+                    cout << "\n\n Duplicate product code!";
+                    goto m;
+                }
+                c++;
+                cout << "\n\n Do you want to buy another product? Y or N";
+                cin >> choice;
+            }
+            while (choice == "Y"){
+                cout << "\n\n\t\t\t_______________________RECEIPT___________________________";
+                cout << "\nProduct No\t Product Name\t Product Quantity\t Price\t Amount\t Amount with Discount";
+
+                for(int i =0; i < c; i++){
+                    data.open("database.txt", ios::in);
+                    data >> pcode >> pname >> price >> dis;
+                    while(!data.eof()){
+                        if (pcode == arr[i]){
+                            amount = price * arrOfQuantity[i];
+                            dis = amount - (amount * dis/100);
+                            total = total + dis;
+                            cout << "\n" << pcode << pname << arrOfQuantity[i] << price >> ;
+                        }
+                    }
+                }
+            }
+        }
     
-    while(!data)
+    }
 }
