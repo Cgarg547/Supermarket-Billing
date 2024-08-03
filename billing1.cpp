@@ -49,7 +49,7 @@ void shopping :: menu(){
             cout << "\t\t\t Password        \n";
             cin >> password;
 
-            if (email = "chirag@email.com" && password = "chirag123"){
+            if (email == "chirag@email.com" && password == "chirag123"){
                 administrator();
             }
             else {
@@ -339,12 +339,21 @@ void shopping :: receipt(){
                             amount = price * arrOfQuantity[i];
                             dis = amount - (amount * dis/100);
                             total = total + dis;
-                            cout << "\n" << pcode << pname << arrOfQuantity[i] << price >> ;
+                            cout << "\n" << pcode << "\t\t" << pname << "\t\t" << arrOfQuantity[i] << "\t\t" << price << "\t\t" << amount << "\t\t" << dis;
                         }
+                        data >> pcode >> pname >> price >> dis;
                     }
                 }
+                data.close();
             }
+            cout << "\n\n_________________________________________________";
+            cout << "\n Total Amount : " << total;
         }
     
     }
+}
+
+int main (){
+    shopping s;
+    s.menu();
 }
