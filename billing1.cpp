@@ -47,6 +47,19 @@ void shopping :: menu(){
             cin >> email;
             cout << "\t\t\t Password        \n";
             cin >> password;
+
+            if (email = "chirag@email.com" && password = "chirag123"){
+                administrator();
+            }
+            else {
+                cout << "Invalid email/password";
+            }
+            break;
+    
+        case 2: {
+            buyer();
+        }
+        
     }
 
 
