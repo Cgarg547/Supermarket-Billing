@@ -16,13 +16,13 @@ class shopping {
         void buyer();
         void add();
         void edit();
-        void remove();
+        void rem();
         void list();
         void receipt();
 };
 
 void shopping :: menu(){
-    m;
+    m:
     int choice;
     string email;
     string password;
@@ -71,7 +71,7 @@ goto m;
 }
 
 void shopping :: administrator(){
-    m;
+    m:
     int choice;
 
     cout << "\n\n\n\t\t\t Administrator menu";
@@ -110,7 +110,7 @@ goto m;
 }
 
 void shopping :: buyer(){
-    m;
+    m:
     int choice;
     cout << "\t\t\t  Buyer \n";
     cout << "\t\t\t_________________\n";
@@ -130,13 +130,13 @@ void shopping :: buyer(){
             menu();
         
         default:
-            cout << "Invalid choice"
+            cout << "Invalid choice";
     }
 goto m;
 }
 
 void shopping :: add(){
-    m;
+    m:
     fstream data;
     int c;
     int token = 0;
@@ -174,7 +174,7 @@ void shopping :: add(){
     }
 
     if(token==1){
-        goto m 
+        goto m;
     }
     else {
         data.open("database.txt", ios::app|ios::out);
@@ -277,7 +277,7 @@ void shopping :: list(){
     fstream data;
     data.open("database.txt", ios::in);
     cout << "\n\n|_____________________________________\n";
-    cout << "ProNo\t\tName\t\tPrice"\n;
+    cout << "ProNo\t\tName\t\tPrice\n";
     cout << "\n\n|_____________________________________\n";
     data >> pcode >> pname >> price >> dis;
     while (!data.eof()){
@@ -288,6 +288,7 @@ void shopping :: list(){
 }
 
 void shopping :: receipt(){
+    m:
     fstream data;
     int arr[100];
     int arrOfQuantity[100];
@@ -297,7 +298,7 @@ void shopping :: receipt(){
     float dis = 0;
     float total = 0;
 
-    count << "\n\n\t\t\t\t RECEIPT ";
+    cout << "\n\n\t\t\t\t RECEIPT ";
 
     data.open("database.txt", ios::in);
     if(!data){
@@ -323,11 +324,14 @@ void shopping :: receipt(){
                     cout << "\n\n Duplicate product code!";
                     goto m;
                 }
+            }
                 c++;
                 cout << "\n\n Do you want to buy another product? Y or N";
                 cin >> choice;
             }
-            while (choice == "Y"){
+            while (choice == 'Y');
+            system("cls");
+            {
                 cout << "\n\n\t\t\t_______________________RECEIPT___________________________";
                 cout << "\nProduct No\t Product Name\t Product Quantity\t Price\t Amount\t Amount with Discount";
 
@@ -349,9 +353,7 @@ void shopping :: receipt(){
             cout << "\n\n_________________________________________________";
             cout << "\n Total Amount : " << total;
         }
-    
     }
-}
 
 int main (){
     shopping s;
